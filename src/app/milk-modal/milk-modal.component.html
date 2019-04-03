@@ -1,0 +1,44 @@
+<ion-content>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-row style="width:100%">
+        <ion-col size="10">
+          <ion-card-title>{{farmer.name}}</ion-card-title>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="onClose()">X</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row style="width:100%">
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>
+              Liter
+            </ion-label>
+            <ion-input type='number' [(ngModel)]="liter" [maxlength]="2"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label>
+              Milliliter
+            </ion-label>
+            <ion-input type='number' [(ngModel)]="milliliter" [maxlength]="1"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="width:100%;">
+        <ion-col size="8">
+        </ion-col>
+        <ion-col size="4">
+          <ion-button (click)="save()" expand="full" shape="round" color="secondary">Save
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,81 @@
+<ion-content>
+  <ion-toolbar color="primary">
+    <ion-button color="secondary" (click)="gotoList()">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+  <form [formGroup]="farmer" (ngSubmit)="addFarmer()">
+    <ion-row style="padding-top:10%;width: 100%;">
+      <ion-col size='1'>
+      </ion-col>
+      <ion-col size='10'>
+        <ion-item>
+          <ion-label>First Name : </ion-label>
+          <ion-input type="text" formControlName="firstName" maxlength="30"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size='1'>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size='1'>
+      </ion-col>
+      <ion-col size='10'>
+        <ion-item>
+          <ion-label>Middle Name : </ion-label>
+          <ion-input type="text" formControlName="middleName" maxlength="30"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size='1'>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size='1'>
+      </ion-col>
+      <ion-col size='10'>
+        <ion-item>
+          <ion-label>Last Name : </ion-label>
+          <ion-input type="text" formControlName="lastName" maxlength="30"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size='1'>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size='1'>
+      </ion-col>
+      <ion-col size='10'>
+        <ion-item>
+          <ion-label>Mobile : </ion-label>
+          <ion-input type="Number" formControlName="mobile" maxlength="10"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size='1'>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size='1'>
+      </ion-col>
+      <ion-col size='10'>
+        <ion-item>
+          <ion-label>Location : </ion-label>
+          <ion-select formControlName="location">
+            <ion-select-option *ngFor="let location of locations;" [value]="location.name">{{location.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size='1'>
+      </ion-col>
+    </ion-row>
+    <ion-row style="width: 100%;">
+      <ion-col size='1'>
+      </ion-col>
+      <ion-col size='10'>
+        <ion-button type='submit' expand="full" shape="round" color="secondary">+Add</ion-button>
+      </ion-col>
+      <ion-col size='1'>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>
