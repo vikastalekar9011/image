@@ -6,8 +6,8 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
       <ion-col>
         <ion-item>
-          <ion-label>User Name :</ion-label>
-          <ion-input type="text" formControlName="userName"></ion-input>
+          <ion-label>Mobile :</ion-label>
+          <ion-input type="text" formControlName="mobile" maxLength=10></ion-input>
         </ion-item>
       </ion-col>
       <ion-col>

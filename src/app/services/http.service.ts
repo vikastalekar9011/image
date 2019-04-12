@@ -23,9 +23,7 @@ export class HttpService {
 
   constructor(public http: HttpClient) { }
   public get<T>(url: string, options?: IRequestOptions): Observable<T> {
-    //url = `${environment.API_PATH}/${url}`;
-    url = '/api/' + url;
-    alert(url);
+    url = `${environment.API_PATH}/${url}`;
     return this.http.get<T>(url, options)
       .pipe(
         catchError(this.handleError)
@@ -39,14 +37,6 @@ export class HttpService {
         catchError(this.handleError)
       );
   }
-
- /*  public post<T>(url: string, params: Object, options?: IRequestOptions): Observable<T> {
-    url = `${url}`;
-    return this.http.post<T>(url, params, options)
-      .pipe(
-        catchError(this.handleError)
-      );
-  } */
 
   public put<T>(url: string, params: Object, options?: IRequestOptions): Observable<T> {
     url = `${environment.API_PATH}/${url}`;
@@ -77,6 +67,6 @@ export class HttpService {
       // console.log(JSON.stringify(error.error));
     }
     // return an observable with a user-facing error message
-    return throwError(error.error);
+    return throwError(error);
   }
 }

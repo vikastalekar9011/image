@@ -15,15 +15,16 @@ export class LoginComponent implements OnInit {
     private loadingService: LoadingService, private loginService: LoginService) { }
 
   loginForm = this.fb.group({
-    userName: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+    mobile: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
     password: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
   });
   ngOnInit() {
 
   }
-  public onSubmit(loginForm: LoginModel) {
+  public onSubmit(loginForm) {
     // this.loadingService.startLoading();
-    this.loginService.login(loginForm).subscribe(
+    console.log(loginForm.value);
+    this.loginService.login(loginForm.value).subscribe(
       (data) => {
         if (data.status === 'success') {
           this.router.navigate(['/listFarmer']);
