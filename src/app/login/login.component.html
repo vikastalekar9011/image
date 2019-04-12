@@ -3,7 +3,7 @@
     <ion-card-title style="color: #fff;">Login</ion-card-title>
   </ion-card-header>
   <ion-card-content style="background-color: #fff;">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
       <ion-col>
         <ion-item>
           <ion-label>User Name :</ion-label>

@@ -28,6 +28,17 @@ router.post('/create', (req, res, next) => {
   })
 })
 
+router.post('/login', (req, res, next) => {
+  console.log(req.body);
+   User.findOne({mobile:req.body.mobile, password:req.body.password, status:'active'},{role:1},function(err,user){
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(user);
+    }
+   });
+})
+
 router.put('/update', (req, res, next) => {
   console.log(req.body);
   User.updateOne(req.body, (err, data) => {

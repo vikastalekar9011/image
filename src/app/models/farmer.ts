@@ -15,6 +15,10 @@ export interface User {
     middleName?: string;
     lastName: string;
     mobile?: string;
-    emaill: string;
+    email: string;
+    password: string;
+}
+export interface LoginModel {
+    userName: string;
     password: string;
 }
