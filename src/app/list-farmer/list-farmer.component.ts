@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MilkModalComponent } from '../milk-modal/milk-modal.component';
 import { Router } from '@angular/router';
+import { FarmerListService } from './services/farmer-list.service';
 @Component({
   selector: 'app-list-farmer',
   templateUrl: './list-farmer.component.html',
@@ -9,67 +10,83 @@ import { Router } from '@angular/router';
 })
 export class ListFarmerComponent implements OnInit {
 
-  constructor(private modal: ModalController, private router: Router) { }
+  constructor(private modal: ModalController, private router: Router, private farmerListService: FarmerListService) { }
   public farmersMaster;
   public farmers;
   public searchText;
   public today = new Date();
   public location = 'Butewadi';
   ngOnInit() {
-    this.farmersMaster = [
-      {
-        name: 'Vittal Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
+    // this.farmersMaster = [
+    //   {
+    //     name: 'Vittal Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    //   {
+    //     name: 'Vishal Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    //   {
+    //     name: 'Yogesh Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    //   {
+    //     name: 'Yuvraj Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    //   {
+    //     name: 'Sagar Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    // ];
+    // this.farmers = [
+    //   {
+    //     name: 'Vittal Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    //   {
+    //     name: 'Vishal Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    //   {
+    //     name: 'Yogesh Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    //   {
+    //     name: 'Yuvraj Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    //   {
+    //     name: 'Sagar Talekar',
+    //     totalMilk: 0,
+    //     todaysMilk: 0,
+    //   },
+    // ];
+
+    this.farmerListService.getList().subscribe(
+      (data) => {
+        if (data.status === 'success') {
+          this.farmersMaster = <ListUser> data.payload;
+          this.farmers = <ListUser> data.payload;
+        } else {
+          console.log(JSON.stringify(data));
+        }
       },
-      {
-        name: 'Vishal Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-      {
-        name: 'Yogesh Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-      {
-        name: 'Yuvraj Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-      {
-        name: 'Sagar Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-    ];
-    this.farmers = [
-      {
-        name: 'Vittal Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-      {
-        name: 'Vishal Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-      {
-        name: 'Yogesh Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-      {
-        name: 'Yuvraj Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-      {
-        name: 'Sagar Talekar',
-        totalMilk: 0,
-        todaysMilk: 0,
-      },
-    ];
+      (error) => {
+        console.log(error);
+      }
+    );
+
+
   }
 
   public onInput() {

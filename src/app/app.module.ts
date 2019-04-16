@@ -22,7 +22,7 @@ import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ListFarmerComponent,
-    AddFarmerComponent, MilkModalComponent, AddLocationComponent, SettingsComponent],
+  AddFarmerComponent, MilkModalComponent, AddLocationComponent, SettingsComponent],
   entryComponents: [MilkModalComponent],
   imports: [FormsModule, BrowserModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [

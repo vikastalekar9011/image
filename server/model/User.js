@@ -15,7 +15,7 @@ var UserSchema = new mongoose.Schema({
 		},
 		required: true
 	},
-	password: String,
+	password: { type:String,select: false},
 	email: { type: String, maxlength: 60 },
 	status: {
 		type: String,
