@@ -1,41 +1,46 @@
 var mongoose = require('mongoose');
 
 var MilkSchema = new mongoose.Schema({
-	_id: Number,
 	shift: {
 		type: String,
-		enum: ['Morning', 'Evening']
+		enum: ['Morning', 'Evening'],
 			required: true
 	},
-	farmer_id: {
-		type: Number,
+	farmer: {
+		type: mongoose.Schema.Types.ObjectId,
 		required: true
 	},
 	milk_quantity: {
-		type: decimal,
+		type: mongoose.Types.Decimal128,
 		required: true
 	},
 	lacto: {
-		type: number,
+		type: mongoose.Types.Decimal128,
 		min: 0,
-		max: 1,
+		max: 35,
 		required: true
 	},
 	fat: {
-		type: decimal,
-		min: 0.0,
-		max: 1.0,
+		type: mongoose.Types.Decimal128,
+		min: 0,
+		max: 7,
+		required: true
+	},
+	snf: {
+		type: mongoose.Types.Decimal128,
+		min: 0,
+		max: 30,
 		required: true
 	},
 	paid_status: {
 		type: String,
-		enum: ['Paid', 'Unpaid']
+		enum: ['Paid', 'Unpaid'],
 			required: true
 	},
 	rate: {
-		type: decimal,
-		min: 0.0,
-		max: 1.0,
+		type: mongoose.Types.Decimal128,
+		min: 20,
+		max: 40,
 		required: true,
 	}
 

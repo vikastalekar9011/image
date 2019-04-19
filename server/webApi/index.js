@@ -2,8 +2,9 @@
 var express = require('express');
 var router = express.Router();
 // var roleManager = require('../utils/role');
-var user = require('../controller/users');
+var user = require('../controller/user');
 var milk = require('../controller/milk');
+var location=require('../controller/location')
 var buildResponse = require('../utils/buildResponse');
 /*====================================== User API=========================================*/
 router.post('/user/create', [
@@ -34,5 +35,6 @@ router.get('/milk/list', [
     milk.getAll,
     buildResponse.send
 ]);
+router.get('/location/list',[location.getAll,buildResponse.send])
 
 module.exports = router;

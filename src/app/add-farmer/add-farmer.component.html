@@ -60,7 +60,7 @@
         <ion-item>
           <ion-label>Location : </ion-label>
           <ion-select formControlName="location">
-            <ion-select-option *ngFor="let location of locations;" [value]="location.name">{{location.name}}
+            <ion-select-option *ngFor="let location of locations;" [value]="location._id">{{location.name}}
             </ion-select-option>
           </ion-select>
         </ion-item>

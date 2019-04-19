@@ -1,4 +1,4 @@
-var User = require('../model/User');
+var User = require('../models/User');
 var exception=require('../utils/exception');
 // var router = express.Router();
 

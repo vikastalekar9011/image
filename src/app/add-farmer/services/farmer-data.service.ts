@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class FarmerDataService {
 
   private path = {
-    addFarmer: 'user/create'
+    addFarmer: 'user/create',
+    getLocations : 'location/list'
   };
 
   constructor(private http: HttpService) { }
@@ -17,6 +18,10 @@ export class FarmerDataService {
     user.role = 'Farmer';
     user.status = 'Active';
     return this.http.post(this.path.addFarmer, user);
+  }
+
+  public getLocations(): Observable<any> {
+    return this.http.get(this.path.getLocations, {});
   }
 
 }

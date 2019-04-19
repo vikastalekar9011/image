@@ -1,4 +1,4 @@
-var Milk = require('../model/Milk');
+var Milk = require('../models/Milk');
 var exception=require('../utils/exception');
 
 

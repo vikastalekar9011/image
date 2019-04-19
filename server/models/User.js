@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
+var Location = require('./Location');
 
 var UserSchema = new mongoose.Schema({
-	_id: Number,
-	first_name: { type: String, required: true, maxlength: 30 },
-	middle_name: { type: String, required: true, maxlength: 30 },
-	last_name: { type: String, required: true, maxlength: 30 },
+	// _id: Number,
+	firstName: { type: String, required: true, maxlength: 30 },
+	middleName: { type: String, required: true, maxlength: 30 },
+	lastName: { type: String, required: true, maxlength: 30 },
+	// location:{type: String,required: true ,maxlength:50},
 	mobile: {
 		type: String,
 		unique: true,
@@ -27,6 +29,8 @@ var UserSchema = new mongoose.Schema({
 		enum: ['Admin', 'Milk Collector', 'Farmer', 'Checking', 'Account'],
 			required: true
 	},
+	location:{ type: mongoose.Schema.Types.ObjectId},
+
 	created_at: {
 		type: Date, default: Date.now
 	},
@@ -34,10 +38,10 @@ var UserSchema = new mongoose.Schema({
 		type: Date
 	},
 	created_by: {
-		type: number
+		type: Number
 	},
 	updated_by: {
-		type: number
+		type: Number
 	}
 });
 

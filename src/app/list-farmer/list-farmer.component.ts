@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { MilkModalComponent } from '../milk-modal/milk-modal.component';
 import { Router } from '@angular/router';
 import { FarmerListService } from './services/farmer-list.service';
+import {ListUser} from './interface/list-user';
 @Component({
   selector: 'app-list-farmer',
   templateUrl: './list-farmer.component.html',
@@ -71,7 +72,6 @@ export class ListFarmerComponent implements OnInit {
     //     todaysMilk: 0,
     //   },
     // ];
-
     this.farmerListService.getList().subscribe(
       (data) => {
         if (data.status === 'success') {
@@ -93,7 +93,7 @@ export class ListFarmerComponent implements OnInit {
     setTimeout(() => {
       this.farmers = [];
       this.farmersMaster.map((farmer) => {
-        if (farmer.name.toLowerCase().search(this.searchText.toLowerCase()) !== -1) {
+        if (farmer.firstName.toLowerCase().search(this.searchText.toLowerCase()) !== -1) {
           this.farmers.push(farmer);
         }
       });

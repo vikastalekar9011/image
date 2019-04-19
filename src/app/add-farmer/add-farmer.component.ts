@@ -32,12 +32,20 @@ export class AddFarmerComponent implements OnInit {
        mobile: new FormControl(''),
        location: new FormControl('Select')
      }); */
-    this.locations = [
-      { name: 'Select', id: '0' },
-      { name: 'Butewadi', id: '1' },
-      { name: 'Chas', id: '2' },
-      { name: 'Pangari', id: '3' }
-    ];
+    // this.locations = [
+    //   { name: 'Select', id: '0' },
+    //   { name: 'Butewadi', id: '1' },
+    //   { name: 'Chas', id: '2' },
+    //   { name: 'Pangari', id: '3' }
+    // ];
+
+    this.farmerService.getLocations().subscribe(
+      (data) => {
+        if (data.status === 'success') {
+          this.locations = data.payload;
+        }
+      }
+    );
     // this.farmer.location = 'Select';
   }
   public gotoList() {
