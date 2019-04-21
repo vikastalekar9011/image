@@ -27,6 +27,7 @@ router.get('/user/getAll', [
 router.post('/milk/add', [
     // roleManager.userAuthentication,
     milk.create,
+    user.update,
     buildResponse.send
 ]);
 

@@ -60,7 +60,7 @@ export class AddFarmerComponent implements OnInit {
     this.farmerService.addFarmer(farmer).subscribe(
       (data) => {
         if (data.status === 'success') {
-          this.socket.emit('farmer_saved');           //tell server that new farmer is saved
+          this.socket.emit('farmer_saved');   //tell server that new farmer is saved
           this.router.navigate(['listFarmer']);
         } else {
           console.log(JSON.stringify(data.res));
