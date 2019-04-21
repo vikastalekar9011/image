@@ -8,7 +8,7 @@
 <ion-searchbar [(ngModel)]="searchText" color="light" (ionInput)="onInput()"></ion-searchbar>
 <ion-content>
     <ion-list>
-        <ng-template ngFor let-farmer let-i="index" [ngForOf]="farmers">
+        <ng-template ngFor let-farmer let-i="index" [ngForOf]="farmerListService.farmers">
             <ion-item>
                 <ion-row style="width: 100%;">
                     <ion-col size="8">

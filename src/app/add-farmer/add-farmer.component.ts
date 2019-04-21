@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 import { Farmer, Location } from '../models/index';
 import { LoadingService } from '../services/loading.service';
 import { FarmerService } from './services/farmer.service';
+import { Socket } from 'ngx-socket-io';
 @Component({
   selector: 'app-add-farmer',
   templateUrl: './add-farmer.component.html',
@@ -14,7 +15,7 @@ export class AddFarmerComponent implements OnInit {
   farmer: any;
   public loading = false;
 
-  constructor(private router: Router, private fb: FormBuilder, private farmerService: FarmerService) { }
+  constructor(private socket: Socket, private router: Router, private fb: FormBuilder, private farmerService: FarmerService) { }
 
 
   ngOnInit() {
@@ -59,6 +60,7 @@ export class AddFarmerComponent implements OnInit {
     this.farmerService.addFarmer(farmer).subscribe(
       (data) => {
         if (data.status === 'success') {
+          this.socket.emit('farmer_saved');           //tell server that new farmer is saved
           this.router.navigate(['listFarmer']);
         } else {
           console.log(JSON.stringify(data.res));
