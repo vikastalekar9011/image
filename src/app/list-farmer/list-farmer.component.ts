@@ -72,19 +72,20 @@ export class ListFarmerComponent implements OnInit {
     //     todaysMilk: 0,
     //   },
     // ];
-    this.farmerListService.getList().subscribe(
-      (data) => {
-        if (data.status === 'success') {
-          this.farmersMaster = <ListUser> data.payload;
-          this.farmers = <ListUser> data.payload;
-        } else {
-          console.log(JSON.stringify(data));
-        }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+
+    // this.farmerListService.getList().subscribe(
+    //   (data:any) => {
+    //     if (data.status === 'success') {
+    //       this.farmersMaster = <ListUser> data.payload;
+    //       this.farmers = <ListUser> data.payload;
+    //     } else {
+    //       console.log(JSON.stringify(data));
+    //     }
+    //   },
+    //   (error:any) => {
+    //     console.log(error);
+    //   }
+    // );
 
 
   }

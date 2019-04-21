@@ -19,12 +19,15 @@ import { SettingsComponent } from './settings/settings.component';
 import { Camera } from '@ionic-native/camera/ngx';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { HttpService } from './services/http.service';
+import {SocketIoModule } from 'ngx-socket-io';
+import {config } from './constants';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ListFarmerComponent,
   AddFarmerComponent, MilkModalComponent, AddLocationComponent, SettingsComponent],
   entryComponents: [MilkModalComponent],
-  imports: [FormsModule, BrowserModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [FormsModule, BrowserModule, ReactiveFormsModule, IonicModule.forRoot(),
+     AppRoutingModule, HttpClientModule, SocketIoModule.forRoot(config)],
   providers: [
     // Camera,
     Camera,
