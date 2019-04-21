@@ -11,11 +11,31 @@ var exception=require('../utils/exception');
 
 exports.getAll = (req, res, next) => {
   User.find({}, (err, users) => {
-    if(err){
+    if (err){
       return exception.raiseError(req, res, next, "U000", 500, 'Internal Server Error : in find User')
-    }else{
+    } else {
       req.payload=users;
       next();
+    }
+  });
+}
+
+exports.update = (req, res, next) => {
+  User.findOne({_id:req.body.farmer}, (err, user) => {
+    if (err){
+      return exception.raiseError(req, res, next, "U000", 500, 'Internal Server Error : in find User')
+    } else {
+        console.log(req.body.milk_quantity+'---'+ user.totalMilk);
+        let old = 0;
+        old = Number(user.totalMilk)
+        console.log(old);
+        const total_milk = old + req.body.milk_quantity;
+        console.log(total_milk);
+        User.update({_id:req.body.farmer},{$set:{totalMilk:total_milk}},{multi:false},(err,us)=>{
+          req.payload=us;
+          next();
+        });
+
     }
   });
 }

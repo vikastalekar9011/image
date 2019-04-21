@@ -42,6 +42,10 @@ var MilkSchema = new mongoose.Schema({
 		min: 20,
 		max: 40,
 		required: true,
+	},
+	amount:{
+		type:Number,
+		required:true
 	}
 
 });

@@ -1,5 +1,5 @@
+require('dotenv').config()
 const socketIO = require('socket.io');
-
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,11 +7,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var webApi = require('./webApi');
-
-const cors = require('cors');
 var app = express();
 
 var db = require('./mongoose_conn');
+
 
 db.once('open',()=>{
   console.log('connected');
@@ -27,14 +26,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
 // Add headers
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
+  res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_HOST);
 
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -55,7 +51,6 @@ app.options('*', function (req, res) {
   res.send(200);
 });
 
-
 app.use('/v1', webApi);
 
 // catch 404 and forward to error handler
@@ -67,18 +62,12 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  res.locals.error = req.app.get('env') === 'development' ? err : {}; 
   // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
 
-// app.use(cors({
-//   origin: 'http://localhost:8100',
-//   methods: 'GET,HEAD,PUT,POST,DELETE',
-//   credentials: true,
-// }));
 
 var server = app.listen('3001');
 const io  = socketIO(server);

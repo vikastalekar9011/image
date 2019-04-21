@@ -29,6 +29,10 @@ var UserSchema = new mongoose.Schema({
 		enum: ['Admin', 'Milk Collector', 'Farmer', 'Checking', 'Account'],
 			required: true
 	},
+	totalMilk:{
+	   type:Number,
+	   default:0
+	},
 	location:{ type: mongoose.Schema.Types.ObjectId},
 
 	created_at: {

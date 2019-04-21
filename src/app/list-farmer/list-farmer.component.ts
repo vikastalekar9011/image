@@ -101,11 +101,13 @@ export class ListFarmerComponent implements OnInit {
     }, 500);
   }
   public async getVal(index) {
-    console.log(this.farmers[index].name);
+    console.log(index);
+  console.log(JSON.stringify(this.farmerListService.farmers));
+    // console.log(this.farmers[index].name);
     const modal = await this.modal.create(
       {
         component: MilkModalComponent,
-        componentProps: { farmer: this.farmers[index], controller: this.modal }
+        componentProps: { farmer: this.farmerListService.farmers[index], controller: this.modal }
       }
     );
     return await modal.present();

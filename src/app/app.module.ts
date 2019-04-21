@@ -26,7 +26,8 @@ import {config } from './constants';
   declarations: [AppComponent, LoginComponent, ListFarmerComponent,
   AddFarmerComponent, MilkModalComponent, AddLocationComponent, SettingsComponent],
   entryComponents: [MilkModalComponent],
-  imports: [FormsModule, BrowserModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, SocketIoModule.forRoot(config)],
+  imports: [FormsModule, BrowserModule, ReactiveFormsModule, IonicModule.forRoot(),
+     AppRoutingModule, HttpClientModule, SocketIoModule.forRoot(config)],
   providers: [
     // Camera,
     Camera,

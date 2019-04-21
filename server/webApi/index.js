@@ -27,6 +27,7 @@ router.get('/user/getAll', [
 router.post('/milk/add', [
     // roleManager.userAuthentication,
     milk.create,
+    user.update,
     buildResponse.send
 ]);
 
@@ -35,6 +36,16 @@ router.get('/milk/list', [
     milk.getAll,
     buildResponse.send
 ]);
-router.get('/location/list',[location.getAll,buildResponse.send])
+/*====================================== Loaction API=========================================*/
+
+router.get('/location/list',[
+    location.getAll,
+    buildResponse.send
+]);
+
+router.post('/location/add',[
+    location.create,
+    buildResponse.send
+]);
 
 module.exports = router;
