@@ -1,3 +1,5 @@
+const socketIO = require('socket.io');
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,6 +10,7 @@ var webApi = require('./webApi');
 
 const cors = require('cors');
 var app = express();
+
 var db = require('./mongoose_conn');
 
 db.once('open',()=>{
@@ -77,6 +80,13 @@ app.use(function(err, req, res, next) {
 //   credentials: true,
 // }));
 
-app.listen('3000');
+var server = app.listen('3000');
+const io  = socketIO(server);
+
+io.on('connection', (socket) => {
+  socket.on('farmer_saved', (data) => {         //server receives message that farmer is saved
+    socket.emit('farmer_saved');                //tell every client that farmer is saved
+  });
+});
 
 module.exports = app;
