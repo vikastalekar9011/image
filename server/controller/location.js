@@ -14,16 +14,11 @@ exports.getAll = (req, res, next) => {
   });
 }
 
-// router.get('/getById/:id', (req, res, next) => {
-//   Milk.findById(req.params.id, (err, user) => {
-//     res.send(user);
-//   })
-// })
-
 exports.create = (req, res, next) => {
-  Milk.create(req.body, (err, data) => {
+  Location.create(req.body, (err, data) => {
     if (err){
-      console.log('error in add new milk data:::'+JSON.stringify(err));
+      console.log('error in add new location data:::'+JSON.stringify(err));
+      return exception.raiseError(req, res, next, "L001", 500, 'Internal Server Error : Fetching Location List');
     }else{
       req.payload=data;
       next();
