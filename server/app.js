@@ -80,12 +80,13 @@ app.use(function(err, req, res, next) {
 //   credentials: true,
 // }));
 
-var server = app.listen('3000');
+var server = app.listen('3001');
 const io  = socketIO(server);
 
 io.on('connection', (socket) => {
   socket.on('farmer_saved', (data) => {         //server receives message that farmer is saved
     socket.emit('farmer_saved');                //tell every client that farmer is saved
+    socket.broadcast.emit('farmer_saved');
   });
 });
 
