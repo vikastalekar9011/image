@@ -15,17 +15,7 @@ exports.getAll = (req, res, next) => {
 }
 
 exports.create = (req, res, next) => {
-
-var milk=new Milk(req.body);
-console.log(req.body);
-
-milk.validate(function(err) {
-    if (err)
-        console.log(err);
-    else
-        console.log('pass validate');
-});
-
+//var milk=new Milk(req.body);
 Milk.create(req.body,(err, data) => {
     if (err){
       console.log('error in add new milk data:::'+JSON.stringify(err));

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  API_PATH: 'http://localhost:3001/v1',
-  SOCKET_PATH : 'localhost:3000'
+  API_PATH: 'http://localhost:3000/v1',
+  SOCKET_PATH : 'localhost:3001'
 };
 
 /*

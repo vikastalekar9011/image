@@ -30,8 +30,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  if(process.env.NODE_ENV==='production'){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
 
+  if(process.env.NODE_ENV==='development'){
+    res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_HOST);
+  }
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
@@ -70,7 +75,7 @@ console.log(err);
 });
 
 
-var server = app.listen('3001');
+var server = app.listen(process.env.SOCKET_PORT);
 const io  = socketIO(server);
 
 io.on('connection', (socket) => {

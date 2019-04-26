@@ -25,7 +25,7 @@ router.get('/user/getAll', [
 
 /*====================================== Milk API=========================================*/
 router.post('/milk/add', [
-    roleManager.userAuthentication,
+   //  roleManager.userAuthentication,
     milk.create,
     user.update,
     buildResponse.send
