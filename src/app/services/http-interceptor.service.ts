@@ -31,7 +31,8 @@ export class HttpInterceptorService implements HttpInterceptor {
     return next.handle(this.setAuthorizationHeader(request))
     .pipe(catchError(error => {
         if (error instanceof HttpErrorResponse) {
-            return Observable.throw(error);
+           console.log(error.error);
+            return Observable.throw(error.error);
         }
       }));
   }

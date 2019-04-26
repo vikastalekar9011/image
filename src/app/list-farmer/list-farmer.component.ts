@@ -11,82 +11,14 @@ import {ListUser} from './interface/list-user';
 })
 export class ListFarmerComponent implements OnInit {
 
-  constructor(private modal: ModalController, private router: Router, private farmerListService: FarmerListService) { }
+  constructor(private modal: ModalController, private router: Router,
+     public farmerListService: FarmerListService) { }
   public farmersMaster;
   public farmers;
   public searchText;
   public today = new Date();
   public location = 'Butewadi';
   ngOnInit() {
-    // this.farmersMaster = [
-    //   {
-    //     name: 'Vittal Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    //   {
-    //     name: 'Vishal Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    //   {
-    //     name: 'Yogesh Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    //   {
-    //     name: 'Yuvraj Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    //   {
-    //     name: 'Sagar Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    // ];
-    // this.farmers = [
-    //   {
-    //     name: 'Vittal Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    //   {
-    //     name: 'Vishal Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    //   {
-    //     name: 'Yogesh Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    //   {
-    //     name: 'Yuvraj Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    //   {
-    //     name: 'Sagar Talekar',
-    //     totalMilk: 0,
-    //     todaysMilk: 0,
-    //   },
-    // ];
-
-    // this.farmerListService.getList().subscribe(
-    //   (data:any) => {
-    //     if (data.status === 'success') {
-    //       this.farmersMaster = <ListUser> data.payload;
-    //       this.farmers = <ListUser> data.payload;
-    //     } else {
-    //       console.log(JSON.stringify(data));
-    //     }
-    //   },
-    //   (error:any) => {
-    //     console.log(error);
-    //   }
-    // );
-
 
   }
 
