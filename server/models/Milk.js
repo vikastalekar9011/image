@@ -11,25 +11,29 @@ var MilkSchema = new mongoose.Schema({
 		required: true
 	},
 	milk_quantity: {
-		type: mongoose.Types.Decimal128,
-		required: true
+		type: mongoose.Schema.Types.Number,
+		required: true,
+		default: 0.0
 	},
 	lacto: {
-		type: mongoose.Types.Decimal128,
+		type: mongoose.Schema.Types.Number,
 		min: 0,
 		max: 35,
+		default: 0.0,
 		required: true
 	},
 	fat: {
-		type: mongoose.Types.Decimal128,
+		type: mongoose.Schema.Types.Number,
 		min: 0,
 		max: 7,
+		default: 0.0,
 		required: true
 	},
 	snf: {
-		type: mongoose.Types.Decimal128,
+		type: mongoose.Schema.Types.Number,
 		min: 0,
 		max: 30,
+		default: 0.0,
 		required: true
 	},
 	paid_status: {
@@ -38,9 +42,10 @@ var MilkSchema = new mongoose.Schema({
 			required: true
 	},
 	rate: {
-		type: mongoose.Types.Decimal128,
+		type: mongoose.Schema.Types.Number,
 		min: 20,
 		max: 40,
+		default: 0.0,
 		required: true,
 	},
 	amount:{
