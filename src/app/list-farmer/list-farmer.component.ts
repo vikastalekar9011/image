@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MilkModalComponent } from '../milk-modal/milk-modal.component';
 import { Router } from '@angular/router';
+import { Farmer, Location } from '../models/index';
 import { FarmerListService } from './services/farmer-list.service';
-import {ListUser} from './interface/list-user';
+
 @Component({
   selector: 'app-list-farmer',
   templateUrl: './list-farmer.component.html',
@@ -12,16 +13,19 @@ import {ListUser} from './interface/list-user';
 export class ListFarmerComponent implements OnInit {
 
   constructor(private modal: ModalController, private router: Router,
-     public farmerListService: FarmerListService) { }
+    public farmerListService: FarmerListService) { }
   public farmersMaster;
   public farmers;
   public searchText;
   public today = new Date();
-  public location = 'Butewadi';
+  public location: Location;
   ngOnInit() {
-
+    this.getLocation();
   }
-
+  public async getLocation() {
+    this.location = await <Location>JSON.parse(localStorage.getItem('location'));
+    console.log(this.location);
+  }
   public onInput() {
     setTimeout(() => {
       this.farmers = [];
@@ -33,9 +37,6 @@ export class ListFarmerComponent implements OnInit {
     }, 500);
   }
   public async getVal(index) {
-    console.log(index);
-  console.log(JSON.stringify(this.farmerListService.farmers));
-    // console.log(this.farmers[index].name);
     const modal = await this.modal.create(
       {
         component: MilkModalComponent,

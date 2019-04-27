@@ -23,7 +23,7 @@ exports.getAll = (req, res, next) => {
 exports.update = (req, res, next) => {
   User.findOne({_id:req.body.farmer}, (err, user) => {
     if (err){
-      return exception.raiseError(req, res, next, "U000", 500, 'Internal Server Error : in find User')
+      return exception.raiseError(req, res, next, "U001", 500, 'Internal Server Error : in find User')
     } else {
         console.log(req.body.milk_quantity+'---'+ user.totalMilk);
         let old = 0;
@@ -50,7 +50,7 @@ exports.create =  (req, res, next) => {
   User.create(req.body, (err, data) => {
     if (err){
     console.log('error in create user'+JSON.stringify(err));
-    return exception.raiseError(req, res, next, "U001", 500, 'Internal Server Error : in Create User');
+    return exception.raiseError(req, res, next, "U002", 500, 'Internal Server Error : in Create User');
     } else {
      req.payload=data;
      next();
@@ -59,11 +59,12 @@ exports.create =  (req, res, next) => {
 }
 exports.login = (req, res, next) => {
   console.log(req.body);
-   User.findOne({mobile:req.body.mobile, password:req.body.password, status:'Active'},{role:1},
-   function(err,user){
+   User.findOne({mobile:req.body.mobile, password:req.body.password, status:'Active'},{role:1})
+   .populate('location', '_id name')
+   .exec(function (err,user){
     if (err || !user) {
       console.log('error in create user'+JSON.stringify(err));
-      return exception.raiseError(req, res, next, "U002", 500, 'Username and Password not matched');  
+      return exception.raiseError(req, res, next, "U003", 500, 'Password not matched');  
     } else {
       req.payload=user;
       next();
@@ -71,6 +72,19 @@ exports.login = (req, res, next) => {
    });
 }
 
+exports.validateMobile = (req, res, next) => {
+
+   User.findOne({mobile:req.body.mobile, status:'Active'},{role:1},
+   function(err,user){
+    if (err || !user) {
+      console.log('error in create user'+JSON.stringify(err));
+      return exception.raiseError(req, res, next, "U004", 404, 'Mobile number not matched');  
+    } else {
+      req.payload=user;
+      next();
+    }
+   });
+}
 // router.put('/update', (req, res, next) => {
 //   console.log(req.body);
 //   User.updateOne(req.body, (err, data) => {

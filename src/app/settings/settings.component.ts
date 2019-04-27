@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PhotoService } from '../services/photo.service';
-
-
-
+import { FormControl, Validators } from '@angular/forms';
+import { SettingService } from './services/setting.service';
+import { async } from 'q';
 
 @Component({
   selector: 'app-settings',
@@ -12,22 +11,28 @@ import { PhotoService } from '../services/photo.service';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private router: Router, private photoService: PhotoService) { }
+ public location: any;
+ public locations: Location[];
+ constructor(private router: Router, private settingService: SettingService) { }
 
   ngOnInit() {
-
-    // Set the handler to run every time we take a picture
-    // this.cameraPreview.setOnPictureTakenHandler().subscribe((result) => {
-    //   console.log(result);
-    //   // do something with the result
-    // });
+    this.settingService.getLocations().subscribe(
+      (data) => {
+        if (data.status === 'success') {
+          this.locations = data.payload;
+        }
+      }
+    );
+    this.location = new FormControl('', Validators.required);
   }
-
 
   public gotoList() {
     this.router.navigate(['listFarmer']);
   }
-  public openCamera() {
-    this.photoService.takePicture();
+
+  public async setLocation() {
+    console.log(JSON.stringify(this.location.value));
+    await localStorage.setItem('location', JSON.stringify(this.location.value));
+    this.router.navigate(['listFarmer']);
   }
 }

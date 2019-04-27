@@ -26,14 +26,14 @@ var UserSchema = new mongoose.Schema({
 	},
 	role: {
 		type: String,
-		enum: ['Admin', 'Milk Collector', 'Farmer', 'Checking', 'Account'],
+		enum: ['Admin', 'Milk Collector', 'Farmer', 'Plant Head', 'Account'],
 			required: true
 	},
 	totalMilk:{
 	   type:Number,
 	   default:0
 	},
-	location:{ type: mongoose.Schema.Types.ObjectId},
+	location:{ type: mongoose.Schema.Types.ObjectId, ref: Location },
 
 	created_at: {
 		type: Date, default: Date.now

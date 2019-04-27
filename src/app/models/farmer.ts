@@ -1,7 +1,7 @@
 
 export interface Location {
     name: string;
-    id: string;
+    _id: string;
 }
 export interface Farmer {
     firstName: string;

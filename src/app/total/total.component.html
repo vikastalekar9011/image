@@ -1,0 +1,37 @@
+<ion-row style="width: 100%;background-color: #ff322e">
+  <ion-col size="4"></ion-col>
+  <ion-col size="6"> Padali Plant</ion-col>
+  <ion-col size="2">
+    <ion-icon name="sunny" style="font-size: 20px; color: yellow;"></ion-icon>
+  </ion-col>
+</ion-row>
+<ion-content padding>
+  <ion-row style="padding-top:10%;width: 100%;">
+    <ion-col size='1'>
+    </ion-col>
+    <ion-col size='10'>
+      {{today | date:'fullDate'}}
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-top:10%;width: 100%;" [formGroup]="total">
+    <ion-col size='1'>
+    </ion-col>
+    <ion-col size='10'>
+      <ion-item>
+        <ion-label>Total : </ion-label>
+        <ion-input type="text" formControlName="quntity" maxlength="30"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size='1'>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding-top:10%;width: 100%;">
+    <ion-col size='1'>
+    </ion-col>
+    <ion-col size='10'>
+      <ion-button (click)="submitTotal()" expand="full" shape="round" color="secondary">+Add</ion-button>
+    </ion-col>
+    <ion-col size='1'>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -13,7 +13,6 @@ export class FarmerService {
     return this.dataService.addFarmer(user);
   }
 
-
   public getLocations(): Observable<any> {
     return this.dataService.getLocations();
   }

@@ -17,29 +17,14 @@ export class AddFarmerComponent implements OnInit {
 
   constructor(private socket: Socket, private router: Router, private fb: FormBuilder, private farmerService: FarmerService) { }
 
-
   ngOnInit() {
     this.farmer = this.fb.group({
       mobile: ['', Validators.compose([Validators.required, Validators.minLength(10)])],
       firstName: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       middleName: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
       lastName: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      location: ['Select', Validators.compose([Validators.required])]
+      location: ['', Validators.compose([Validators.required])]
     });
-    /*  this.farmer = new FormGroup({
-       firstName: new FormControl(''),
-       lastName: new FormControl(''),
-       middleName: new FormControl(''),
-       mobile: new FormControl(''),
-       location: new FormControl('Select')
-     }); */
-    // this.locations = [
-    //   { name: 'Select', id: '0' },
-    //   { name: 'Butewadi', id: '1' },
-    //   { name: 'Chas', id: '2' },
-    //   { name: 'Pangari', id: '3' }
-    // ];
-
     this.farmerService.getLocations().subscribe(
       (data) => {
         if (data.status === 'success') {
@@ -47,20 +32,17 @@ export class AddFarmerComponent implements OnInit {
         }
       }
     );
-    // this.farmer.location = 'Select';
   }
   public gotoList() {
     this.router.navigate(['listFarmer']);
   }
   public addFarmer() {
-    // debugger;
     const farmer = <Farmer>this.farmer.value;
-    console.log(JSON.stringify(farmer));
     this.loading = true;
     this.farmerService.addFarmer(farmer).subscribe(
       (data) => {
         if (data.status === 'success') {
-          this.socket.emit('farmer_saved');   //tell server that new farmer is saved
+          this.socket.emit('farmer_saved');   // tell server that new farmer is saved
           this.router.navigate(['listFarmer']);
         } else {
           console.log(JSON.stringify(data.res));
@@ -70,7 +52,5 @@ export class AddFarmerComponent implements OnInit {
         console.log(error);
       }
     );
-
-
   }
 }

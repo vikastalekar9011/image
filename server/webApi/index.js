@@ -18,7 +18,13 @@ router.post('/user/login', [
     buildResponse.send
 ]);
 
+router.post('/user/validateMobile', [
+    user.validateMobile,
+    buildResponse.send
+]);
+
 router.get('/user/getAll', [
+    // roleManager.userAuthentication,
     user.getAll,
     buildResponse.send
 ]);
@@ -31,11 +37,18 @@ router.post('/milk/add', [
     buildResponse.send
 ]);
 
+router.post('/milk/total', [
+    //  roleManager.userAuthentication,
+     milk.total,
+     buildResponse.send
+ ]);
+
 router.get('/milk/list', [
     // roleManager.userAuthentication,
     milk.getAll,
     buildResponse.send
 ]);
+
 /*====================================== Loaction API=========================================*/
 
 router.get('/location/list',[

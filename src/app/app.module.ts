@@ -15,6 +15,8 @@ import { AddFarmerComponent } from './add-farmer/add-farmer.component';
 import { MilkModalComponent } from './milk-modal/milk-modal.component';
 import { AddLocationComponent } from './add-location/add-location.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TotalComponent } from './total/total.component';
+import { Sim } from '@ionic-native/sim/ngx';
 // import { Camera } from '@ionic-native/camera/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { HttpInterceptorService } from './services/http-interceptor.service';
@@ -24,13 +26,14 @@ import {config } from './constants';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ListFarmerComponent,
-  AddFarmerComponent, MilkModalComponent, AddLocationComponent, SettingsComponent],
+  AddFarmerComponent, MilkModalComponent, AddLocationComponent, SettingsComponent, TotalComponent],
   entryComponents: [MilkModalComponent],
   imports: [FormsModule, BrowserModule, ReactiveFormsModule, IonicModule.forRoot(),
      AppRoutingModule, HttpClientModule, SocketIoModule.forRoot(config)],
   providers: [
     // Camera,
     Camera,
+    Sim,
     StatusBar,
     HttpService,
     SplashScreen,
